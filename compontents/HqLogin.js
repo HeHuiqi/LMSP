@@ -8,6 +8,8 @@ import { useState } from "react";
 
 import {login}  from '../HqUtils/HqNetUtils';
 
+
+// 设备token 抓包获取，每个账户有一个在登录的即可请求头 'x-device-token-letmespeak' 字段中
 const device_token_letmespeak = 'lPuSP3yzzrjumOtq';
 
 function HqLogin(){
