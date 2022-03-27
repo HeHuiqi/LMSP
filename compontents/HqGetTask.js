@@ -28,7 +28,7 @@ function HqGetTask(){
     }
     return (
         <HqDiv>
-            <HqInput inputName={'关卡ID'} onInputChange={onInputChangeTaskId}></HqInput>
+            <HqInput inputName={'关卡ID 从1开始'} onInputChange={onInputChangeTaskId}></HqInput>
             <button onClick={getTask}>获取关卡详情</button>
             <HqTextarea result={taskInfo}></HqTextarea>
         </HqDiv>
