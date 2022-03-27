@@ -43,7 +43,11 @@ export async function login(email,password){
 }
 
 export async function getTaskDetail(taskId){
-
+    const headers = { 
+        "Content-Type": "application/json",
+        // "x-client-id":'ios',
+        "x-device-token-letmespeak":appState.deviceToken,
+    };
     const config = {headers};
     const url=  `https://api2.letmespeak.pro/lms/dialog/byOrder/${taskId}?v=1&newwordsets=true`
     const out = await axios.post(url,config);
