@@ -10,6 +10,10 @@
 ## 抓包教程
 https://www.cnblogs.com/junhuawang/p/7280957.html
 
+## 运行准备
+安装 node 
+安装 npm
+
 ## 本地运行
 ```
 npm run dev

@@ -34,7 +34,7 @@ function HqLogin(){
 
     const startLogin = async function(){
         console.log('email:',email);
-        console.log('ps:',password);
+        console.log('ps:',password);       
         if(email && password){
             // await login(email,password);
             const loginTokenInfo = await login(email,password);
@@ -52,6 +52,7 @@ function HqLogin(){
             <HqInput inputName={'DeviceToken'} onInputChange={onInputChangeDeviceToken} defaultValue={deviceToken}></HqInput>
             <button onClick={startLogin}>登录</button>
             <HqTextarea result={loginToken}></HqTextarea>
+
         </HqDiv>
     );
 }

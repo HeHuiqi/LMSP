@@ -1,6 +1,28 @@
-const hostname = 'api2.letmespeak.pro';
 const axios = require('axios');
 import appState from '../states/HqAppState'
+import ReactDOM from 'react-dom';
+import HqLoading from "../compontents/HqLoading";
+
+
+
+// 显示loading
+const showLoading = () => {
+    const dom = document.createElement('div')
+    dom.setAttribute('id', 'loading')
+    document.body.appendChild(dom)
+    ReactDOM.render(<HqLoading tip="请稍后 ..."/>, dom);
+
+}
+
+// 隐藏loading
+const hideLoading = () => {
+    const lTag = document.getElementById('loading');
+    if(lTag){
+        console.log('remove');
+        document.body.removeChild(lTag);
+    }
+};
+
 
 
 
@@ -32,6 +54,7 @@ async function decryptAuthToken(auth_token){
 }
 
 export async function login(email,password){
+    showLoading();
     const authLogin = await reqAuthToken(email,password);
     console.log('authLogin:',authLogin);
     const auth_token = authLogin.data.profiles[0].auth_token;
@@ -39,10 +62,12 @@ export async function login(email,password){
 
     const loginTokenInfo  = await decryptAuthToken(auth_token);
     console.log('loginTokenInfo:',loginTokenInfo);
+    hideLoading();
     return loginTokenInfo;
 }
 
 export async function getTaskDetail(taskId){
+    showLoading();
     const headers = { 
         "Content-Type": "application/json",
         // "x-client-id":'ios',
@@ -52,10 +77,12 @@ export async function getTaskDetail(taskId){
     const url=  `https://api2.letmespeak.pro/lms/dialog/byOrder/${taskId}?v=1&newwordsets=true`
     const out = await axios.post(url,config);
     // console.log('getTaskDetail:',out);
+    hideLoading();
     return out;
 }
 
 export async function finishTask(taskId,game_id,token){
+    showLoading();
     const data = {"result":"3","id":taskId,"game_id":game_id};
 
     const headers = { 
@@ -71,5 +98,6 @@ export async function finishTask(taskId,game_id,token){
     const url=  'https://api2.letmespeak.pro/api/1.0/training/finish/dialogue'
     const out = await axios.post(url,data,config);
     console.log('finishTask:',out);
+    hideLoading();
     return out;
 }
