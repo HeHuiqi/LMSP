@@ -5,8 +5,6 @@ import HqTextarea from './HqTextarea'
 
 import appState from '../states/HqAppState'
 import { useState } from "react";
-//email: 871889334@qq.com
-// ps: huxuefei1121
 let account = {};
 import {login,showLoading,hideLoading}  from '../HqUtils/HqNetUtils';
 
