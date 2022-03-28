@@ -41,14 +41,17 @@ async function reqAuthToken(email,password){
     const out = await axios.post('https://api2.letmespeak.pro/user/v2/auth',data,config);
     return out;
 }
-async function decryptAuthToken(auth_token){
+async function decryptAuthToken(auth_token,loginToken){
     const headers = { 
         "Content-Type": "application/json",
         // "x-client-id":'ios',
         "x-device-token-letmespeak":appState.deviceToken,
+        "x-c-token-letmespeak":loginToken,
     };
     const data = {"token":headers['x-device-token-letmespeak'],auth_token:auth_token};
+    console.log('decryptAuthToken:',data);
     const config = {headers};
+    console.log('headers:',headers);
     const out = await axios.post('https://api2.letmespeak.pro/api/1.0/auth',data,config);
     return out;
 }
@@ -58,10 +61,10 @@ export async function login(email,password){
     const authLogin = await reqAuthToken(email,password);
     console.log('authLogin:',authLogin);
     const auth_token = authLogin.data.profiles[0].auth_token;
-    // console.log('authLogin:',auth_token);
-
-    const loginTokenInfo  = await decryptAuthToken(auth_token);
+    const loginToken = authLogin.data.token;
+    const loginTokenInfo  = await decryptAuthToken(auth_token,loginToken);
     console.log('loginTokenInfo:',loginTokenInfo);
+
     hideLoading();
     return loginTokenInfo;
 }
