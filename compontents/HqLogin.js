@@ -6,11 +6,13 @@ import HqTextarea from './HqTextarea'
 import appState from '../states/HqAppState'
 import { useState } from "react";
 
-import {login}  from '../HqUtils/HqNetUtils';
+import {login,showLoading,hideLoading}  from '../HqUtils/HqNetUtils';
 
 
 // 设备token 抓包获取，每个账户有一个在登录的即可请求头 'x-device-token-letmespeak' 字段中
 const device_token_letmespeak = 'lPuSP3yzzrjumOtq';
+
+let isShow = 1;
 
 function HqLogin(){
     const [email, setEmail] = useState();
@@ -34,7 +36,13 @@ function HqLogin(){
 
     const startLogin = async function(){
         console.log('email:',email);
-        console.log('ps:',password);       
+        console.log('ps:',password);  
+        
+        // test loading
+        // const fun = isShow ? showLoading: hideLoading;
+        // fun();
+        // isShow = !isShow;
+
         if(email && password){
             // await login(email,password);
             const loginTokenInfo = await login(email,password);

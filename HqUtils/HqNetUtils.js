@@ -6,7 +6,7 @@ import HqLoading from "../compontents/HqLoading";
 
 
 // 显示loading
-const showLoading = () => {
+export const showLoading = () => {
     const dom = document.createElement('div')
     dom.setAttribute('id', 'loading')
     document.body.appendChild(dom)
@@ -15,7 +15,7 @@ const showLoading = () => {
 }
 
 // 隐藏loading
-const hideLoading = () => {
+export const hideLoading = () => {
     const lTag = document.getElementById('loading');
     if(lTag){
         console.log('remove');

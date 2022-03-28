@@ -10,9 +10,14 @@ function HqLoading(props){
 
     };
     return(
-        <div className={styles.hqLoading} onClick={hideLoading}>
-            <h2> {props.tip}</h2>
+        <div className={styles.HqLoading} onClick={hideLoading}>
+
+            <div className={styles.loader}>
+            </div>
+            <p>{props.tip}</p>
+
         </div>
+
     );
 }
 export default HqLoading;
