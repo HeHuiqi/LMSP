@@ -7,6 +7,7 @@ import HqLoading from "../compontents/HqLoading";
 
 // 显示loading
 export const showLoading = () => {
+    hideLoading();
     const dom = document.createElement('div')
     dom.setAttribute('id', 'loading')
     document.body.appendChild(dom)
@@ -58,14 +59,20 @@ async function decryptAuthToken(auth_token,loginToken){
 
 export async function login(email,password){
     showLoading();
-    const authLogin = await reqAuthToken(email,password);
-    console.log('authLogin:',authLogin);
-    const auth_token = authLogin.data.profiles[0].auth_token;
-    const loginToken = authLogin.data.token;
-    const loginTokenInfo  = await decryptAuthToken(auth_token,loginToken);
-    console.log('loginTokenInfo:',loginTokenInfo);
+    let loginTokenInfo;
+    try {
+        const authLogin = await reqAuthToken(email,password);
+        console.log('authLogin:',authLogin);
+        const auth_token = authLogin.data.profiles[0].auth_token;
+        const loginToken = authLogin.data.token;
+        loginTokenInfo  = await decryptAuthToken(auth_token,loginToken);
+        console.log('loginTokenInfo:',loginTokenInfo);
+        hideLoading();
 
-    hideLoading();
+    } catch (error) {
+        hideLoading();
+
+    }
     return loginTokenInfo;
 }
 
@@ -77,10 +84,18 @@ export async function getTaskDetail(taskId){
         "x-device-token-letmespeak":appState.deviceToken,
     };
     const config = {headers};
-    const url=  `https://api2.letmespeak.pro/lms/dialog/byOrder/${taskId}?v=1&newwordsets=true`
-    const out = await axios.post(url,config);
-    // console.log('getTaskDetail:',out);
-    hideLoading();
+    const url=  `https://api2.letmespeak.pro/lms/dialog/byOrder/${taskId}?v=2&newwordsets=true`
+    console.log('data:',url);
+
+    let out;
+    try {
+        out = await axios.post(url,config);
+        // console.log('getTaskDetail:',out);
+        hideLoading();
+    } catch (error) {
+        hideLoading();
+
+    }
     return out;
 }
 
@@ -97,10 +112,20 @@ export async function finishTask(taskId,game_id,token){
     const config = {
         headers,
     };
-    console.log('config:',config);
-    const url=  'https://api2.letmespeak.pro/api/1.0/training/finish/dialogue'
-    const out = await axios.post(url,data,config);
-    console.log('finishTask:',out);
-    hideLoading();
+    console.log('finishTask-config:',config);
+    console.log('finishTask-data:',data);
+
+    const url=  'https://api2.letmespeak.pro/api/1.0/training/finish/dialogue';
+
+    let out;
+    try {
+        out = await axios.post(url,data,config);
+        console.log('finishTask:',out);
+        hideLoading();
+    } catch (error) {
+        hideLoading();
+    }
+
     return out;
 }
+

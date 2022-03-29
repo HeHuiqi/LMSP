@@ -5,10 +5,11 @@ function HqInput(props){
     const onInputChange = props.onInputChange;
     const type = props.isSecrutiyInput ? 'password':'text';
     const default_value = props.defaultValue;
+    const inputId = props.inputId;
     return(
         <div className={styles.hqInput}>
             <b>{lab}</b><br></br>
-            <input placeholder="请输入" onChange={onInputChange} type={type} defaultValue={default_value}></input>
+            <input id={inputId} placeholder="请输入"  type={type}  defaultValue={default_value} onChange={onInputChange}></input>
         </div>
     );
 }

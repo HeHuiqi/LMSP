@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 import HqLogin from '../compontents/HqLogin'
 import HqGetTask from '../compontents/HqGetTask'
 import HqDoTask from '../compontents/HqDoTask'
+import HqAutoDoTask from '../compontents/HqAutoDoTask'
 export default function Home() {
   return (
     <div className={styles.container} id={'root'}>
@@ -19,8 +20,9 @@ export default function Home() {
           Welcome to let me skip speak!
         </h1>
         <HqLogin></HqLogin>
-        <HqGetTask></HqGetTask>
-        <HqDoTask></HqDoTask>
+        {/* <HqGetTask></HqGetTask>
+        <HqDoTask></HqDoTask> */}
+        <HqAutoDoTask></HqAutoDoTask>
 
       </main>
 
