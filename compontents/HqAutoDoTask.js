@@ -106,18 +106,18 @@ function HqAutoDoTask(){
         isInput = false;
         endTask = false;
 
-        
         console.log('doTask:',currentId);
         if(currentId > 0){
+        const timerFn = async ()=>{
+            console.log('isInput:',isInput);
+            console.log('endTask:',endTask);
 
-          timer = setInterval(async ()=>{
-              console.log('isInput:',isInput);
-              console.log('endTask:',endTask);
-
-              if(isInput === false && endTask ===false){
-                await reqDoTask(currentId,true);
-            }
-          },reqInterval * 1000);
+            if(isInput === false && endTask ===false){
+              await reqDoTask(currentId,true);
+          }
+        };
+        timerFn();
+        timer = setInterval(timerFn,reqInterval * 1000);
 
         }
     }
@@ -137,9 +137,7 @@ function HqAutoDoTask(){
             <button onClick={autoToTask}>自动做任务</button>
             <button onClick={stopDoTask}>停止自动做任务</button>
             <button onClick={manualDoTask}  >手动做任务</button>
-            <HqTextarea result={finnishResult}></HqTextarea>
-
-            {/* <p>{date.toTimeString()}</p> */}
+            <HqTextarea result={finnishResult} isReadOnly={true}></HqTextarea>
         </HqDiv>
     );
 }

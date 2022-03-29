@@ -1,7 +1,8 @@
 function HqTextarea(props){
+    const isReadOnly = props.isReadOnly;
     return(
         <div>
-            <textarea  readOnly={'readonly'} defaultValue={props.result}></textarea>
+            <textarea  readOnly={isReadOnly} defaultValue={props.result}></textarea>
         </div>
     );
 }
