@@ -11,9 +11,9 @@ function HqAutoDoTask(){
     const [taskId, setTaskId] = useState(1);
     const [finnishResult, setFinnishResult] = useState();
     const [gameId,setGameId] = useState('');
-    const [reqInterval, setReqInterval] = useState(3); //秒
+    const [reqInterval, setReqInterval] = useState(5); //秒
 
-    appState.token = 'ZKZ9DgTZxf3be2BRp8WP9DXru0C6ZJ7ksbBKPmyc3EGscVYuN1Qby/3/U1o61F1dgXVD6zcbLP5DLxW9EfNMMmDufiCG5ECtM1WSnUdeq+7Mved1MT7kANViQotg0xoxVMPkc9pwaeNoFudEyx3j6zcpGUQUF/ats3vWVc8UTviLn/PGQ5np4I4dwAjB8kp9Ks48xiIpfs1MM3daxJP8ZX6Eg/ukgz+2znE8i0m3fMMJRDdhP1HFH8PZOcertEud/1zKwYJb2Ibgt/lm426ztrHAbPtjtA+vTKP51PY9ezrzOupRFsbBizi/RcorFHMHQycCjZlDl8KycSLzavXkaifOyBBcWiOByREsZacaeu97NOUz7f5Vr0WSd6WzjjdlleMytb2dTtHo+NWNl9f6AZ9MrISq1wcWm4eeSXTXwVV2eJb3ENTK4hO0wrqMRi8wHXtmh7yGIeBJRQRkrQmGFp2f/VINfArimHRN+FCt2WGt88SNFCZlgTbcte+JbQYDA5uqPgy0k9Hcz47IpP3CLjZ/MZLdJx2FWqJxGeoCcHOCFY9+cRUuu8SpOcxAuwIGtpcbRD2IEOxIFs2JeqQ8JMK2lJS0t8FV94sSz7PxArqYtpKE16fc9OCgcYrDPYub4gk/b9FeKWoYGpKaJ5+VR4lzLPmuh9JFXifOvlI0cCvJLaLRajGU1HkaxdEVhT3/LoDBdPbM+7E1JwnFgSX4nu4=';
+    // appState.token = 'ZKZ9DgTZxf3be2BRp8WP9DXru0C6ZJ7ksbBKPmyc3EGscVYuN1Qby/3/U1o61F1dgXVD6zcbLP5DLxW9EfNMMmDufiCG5ECtM1WSnUdeq+7Mved1MT7kANViQotg0xoxVMPkc9pwaeNoFudEyx3j6zcpGUQUF/ats3vWVc8UTviLn/PGQ5np4I4dwAjB8kp9Ks48xiIpfs1MM3daxJP8ZX6Eg/ukgz+2znE8i0m3fMMJRDdhP1HFH8PZOcertEud/1zKwYJb2Ibgt/lm426ztrHAbPtjtA+vTKP51PY9ezrzOupRFsbBizi/RcorFHMHQycCjZlDl8KycSLzavXkaifOyBBcWiOByREsZacaeu97NOUz7f5Vr0WSd6WzjjdlleMytb2dTtHo+NWNl9f6AZ9MrISq1wcWm4eeSXTXwVV2eJb3ENTK4hO0wrqMRi8wHXtmh7yGIeBJRQRkrQmGFp2f/VINfArimHRN+FCt2WGt88SNFCZlgTbcte+JbQYDA5uqPgy0k9Hcz47IpP3CLjZ/MZLdJx2FWqJxGeoCcHOCFY9+cRUuu8SpOcxAuwIGtpcbRD2IEOxIFs2JeqQ8JMK2lJS0t8FV94sSz7PxArqYtpKE16fc9OCgcYrDPYub4gk/b9FeKWoYGpKaJ5+VR4lzLPmuh9JFXifOvlI0cCvJLaLRajGU1HkaxdEVhT3/LoDBdPbM+7E1JwnFgSX4nu4=';
 
     let timer;
     let isInput = false;
