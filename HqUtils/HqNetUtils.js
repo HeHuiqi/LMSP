@@ -39,6 +39,7 @@ async function reqAuthToken(email,password){
     };
 
     const config = {headers};
+    console.log('config:',config);
     const out = await axios.post('https://api2.letmespeak.pro/user/v2/auth',data,config);
     return out;
 }

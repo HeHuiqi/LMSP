@@ -51,12 +51,22 @@ function HqLogin(){
         }
         
     }
+    const clearLocalToken = async function(){
+        let account_save = {
+            token:'',
+            expired_at:0
+        };
+        localStorage.setItem(email,JSON.stringify(account_save));
+        alert('清除成功');
+    }
     return (
         <HqDiv>
             <HqInput inputName={'邮箱'} onInputChange={onInputChangeEmail}></HqInput>
             <HqInput inputName={'密码'} onInputChange={onInputChangePassword} isSecrutiyInput={true}></HqInput>
             <HqInput inputName={'DeviceToken'} onInputChange={onInputChangeDeviceToken} defaultValue={deviceToken}></HqInput>
             <button onClick={startLogin}>登录</button>
+            <button onClick={clearLocalToken}>清楚本地token</button>
+
             <HqTextarea result={loginToken} isReadOnly={false}></HqTextarea>
 
         </HqDiv>
