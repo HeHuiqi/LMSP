@@ -65,7 +65,7 @@ function HqLogin(){
             <HqInput inputName={'密码'} onInputChange={onInputChangePassword} isSecrutiyInput={true}></HqInput>
             <HqInput inputName={'DeviceToken'} onInputChange={onInputChangeDeviceToken} defaultValue={deviceToken}></HqInput>
             <button onClick={startLogin}>登录</button>
-            <button onClick={clearLocalToken}>清楚本地token</button>
+            <button onClick={clearLocalToken}>清除本地token</button>
 
             <HqTextarea result={loginToken} isReadOnly={false}></HqTextarea>
 
