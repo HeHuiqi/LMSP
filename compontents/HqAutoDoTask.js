@@ -117,7 +117,10 @@ function HqAutoDoTask() {
 
         if (gameId !== game_id) {
             setGameId(game_id);
-            const wordIDs = [1,2,3,4]
+            const words = task.data.words; 
+            const wordIDs = words.map((word)=>{
+                return word.id;
+            });
             const total = JSON.stringify(wordIDs.length);
             const error = "0";
             const finishOut = await finishWordTask(game_id, error,total,wordIDs);
