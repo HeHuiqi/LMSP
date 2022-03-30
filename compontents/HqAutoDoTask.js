@@ -4,10 +4,11 @@ import HqTextarea from "./HqTextarea";
 
 import appState from '../states/HqAppState'
 import { useState, useEffect } from "react";
-import { getTaskDetail, finishTask,getWordTaskDetail,finishWordTask } from '../HqUtils/HqNetUtils';
+import { getTaskDetail, finishTask,getWordTaskDetail,finishWordTask,reqMock } from '../HqUtils/HqNetUtils';
 
 import HqSelectTask from '../compontents/HqSelectTask';
 let currentId = 1;
+window.endTask = false;
 
 function HqAutoDoTask() {
     const [taskType, setTaskType] = useState(0);
@@ -18,7 +19,6 @@ function HqAutoDoTask() {
 
     let timer;
     let isInput = false;
-    let endTask = false;
     useEffect(() => {
 
         return () => {
@@ -81,7 +81,7 @@ function HqAutoDoTask() {
                 console.log('outData.energy_spent:', outData.energy_spent);
 
                 if (outData.energy_now === 0) {
-                    endTask = true;
+                    window.endTask = true;
                     alert('没有精力了，休息一下吧！');
                 } else {
                     console.log('outData.energy_spent-inner:', outData.energy_spent);
@@ -103,6 +103,10 @@ function HqAutoDoTask() {
         // const task = await getTaskDetail(taskId);
         // console.log('getTaskDetail:',task.data);
         // return;
+
+        if(window.endTask == true){
+            return
+        }
 
         console.log('currentId:', currentId);
 
@@ -134,7 +138,7 @@ function HqAutoDoTask() {
                 console.log('outData.energy_spent:', outData.energy_spent);
 
                 if (outData.energy_now === 0) {
-                    endTask = true;
+                    window.endTask = true;
                     alert('没有精力了，休息一下吧！');
                 } else {
                     console.log('outData.energy_spent-inner:', outData.energy_spent);
@@ -154,7 +158,7 @@ function HqAutoDoTask() {
 
     const manualDoTask = async () => {
         isInput = false;
-        endTask = false;
+        window.endTask = false;
         console.log('doTaskID:', currentId);
         console.log('taskType:', taskType);
         if (currentId > 0) {
@@ -175,9 +179,17 @@ function HqAutoDoTask() {
             }
         }
     }
+
+    const testReqMock = async function(){
+        if(window.endTask){
+            return;
+        }
+        await reqMock();
+    };
+ 
     const autoToTask = async function () {
         isInput = false;
-        endTask = false;
+        window.endTask = false;
 
         console.log('doTaskID:', currentId);
         console.log('taskType:', taskType);
@@ -186,9 +198,9 @@ function HqAutoDoTask() {
         if (currentId > 0) {
             const timerFn = async () => {
                 console.log('isInput:', isInput);
-                console.log('endTask:', endTask);
+                console.log('window.endTask:', window.endTask);
 
-                if (isInput === false && endTask === false) {
+                if (isInput === false && window.endTask === false) {
                     switch (taskType) {
                         case 1:
                             
@@ -199,8 +211,9 @@ function HqAutoDoTask() {
                             break;
                     
                         default:
+
+                            // await testReqMock();
                             await reqDoWordTask(currentId,true);
-                            // await getWordTaskDetail(currentId);
                             break;
                     }
                 }
@@ -212,9 +225,9 @@ function HqAutoDoTask() {
 
     }
     const stopDoTask = function () {
-        endTask = true;
+        window.endTask = true;
         console.log('isInput:', isInput);
-        console.log('endTask:', endTask);
+        console.log('window.endTask:', window.endTask);
         if (timer) {
             clearInterval(timer);
             timer = null;

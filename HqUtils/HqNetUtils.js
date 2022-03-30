@@ -218,4 +218,19 @@ export async function finishWordTask(game_id,errsCount,totalCount,wordIDs){
     return out;
 }
 
-
+function mockRequest(){
+    return new Promise((resovle)=>{
+        setTimeout(() => {
+            resovle('data:mockRequest');
+        }, 3000);
+    });
+}
+export const reqMock = async function (){
+  
+    console.log('reqmock');
+    showLoading();
+    let data =  await mockRequest();
+    console.log("result:",data);
+    hideLoading();
+   
+}
