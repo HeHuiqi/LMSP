@@ -38,25 +38,18 @@ function HqLogin(){
 
     const startLogin = async function(){
         console.log('email:',email);
-        // console.log('ps:',password);  
-        
-        // test loading
-        // const fun = isShow ? showLoading: hideLoading;
-        // fun();
-        // isShow = !isShow;
+        // console.log('ps:',password);
 
         if(email && password){
             // await login(email,password);
-            // const myToken = 'DW5x3+cVjeQ9Ujxt7wIjiTBalYOGgosBiZoXUPsNVlmWptsmUjFTVtizKCUgW+pvqbo6bfwiNuXPykO8pPFjN7Mtw1h44OvpG7ZatLOOICGqktfy8kQDzlJ5iIxd5LQVzaseCg3Q265oXWYoVpzwwnHb0HssTuUNPUSyCP/wzyxbDOjx5MSJCKaGjIkNOInbS2jsva3aIuUSa8CSHI+qqtrJ+dFpzXNSvv2teALdso9GkZMx4zQTYNPNT42TkxcA9LTyiMWiocDLn8Xu4p7Nobh+vOBkrORBNJOCW5GMOlPjl4/2ShFOvXl174J7MQyis6HGKl7oFCT2p6Ru3JAFVnsQqgQecm7bKUdVtWV0qaLcIj27S9tqL6TtOHE9+Civ75e/IsisVLLrP0S8vpN9Ss/HLCyEJ4eRN+4aWKAxi7RZ4dIpsmU4QCO7UZpbl4JL2OkWpgkgQK7Xy8+aLr9Aj4p3zMb2tIuLwjFLEl0XCkAcZjSC9uFSosVqqJURQiggvSCtpFkVORMafe2lQbkzRzxxeJZSCvvLSIpbZPOn8AQ0D2IjHtwKWf4gFn+is1G73yX0c+EEgmAruKdXiGPe+fPdjR6siaAcA4YopXKAY/IiGMLGctsSLPDJLTY0RpOBDe1tLkKBrlij2XruE5q4cE7SapovOWGgcUq+ulb5z0CxY4K76F6OFoEP4sTwgYeocgedZmVe9q0aTje/BDhBDf4='
             const loginTokenInfo = await login(email,password);
             appState.token = loginTokenInfo.data.token;
             console.log('appState.token:',appState.token);
-
-
             setLoginToken(appState.token);
         }else{
             alert('请输入账户和密码')
         }
+        
     }
     return (
         <HqDiv>
