@@ -9,7 +9,6 @@ import { getTaskDetail, finishTask,getWordTaskDetail,finishWordTask,reqMock } fr
 import HqSelectTask from '../compontents/HqSelectTask';
 let currentId = 1;
 let endTask = false;
-let timer;
 
 function HqAutoDoTask() {
     const [taskType, setTaskType] = useState(0);
@@ -19,6 +18,7 @@ function HqAutoDoTask() {
     const [reqInterval, setReqInterval] = useState(5); //秒
 
     let isInput = false;
+    let timer;
     useEffect(() => {
 
         return () => {
