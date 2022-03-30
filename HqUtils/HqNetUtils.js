@@ -29,7 +29,7 @@ export const hideLoading = () => {
 
 // https://api2.letmespeak.pro/api/1.0/auth
 
-async function reqAuthToken(email,password){
+export async function reqAuthToken(email,password){
     const data = {"login":email,password:password};
 
     const headers = { 
@@ -43,7 +43,7 @@ async function reqAuthToken(email,password){
     const out = await axios.post('https://api2.letmespeak.pro/user/v2/auth',data,config);
     return out;
 }
-async function decryptAuthToken(auth_token,loginToken){
+export async function decryptAuthToken(auth_token,loginToken){
     const headers = { 
         "Content-Type": "application/json",
         // "x-client-id":'ios',
